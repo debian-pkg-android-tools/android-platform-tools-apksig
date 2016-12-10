@@ -1,0 +1,8 @@
+apksigner.debhelper.log
+apksigner.substvars
+apksigner/
+debhelper-build-stamp
+files
+libapksig-java.debhelper.log
+libapksig-java.substvars
+libapksig-java/

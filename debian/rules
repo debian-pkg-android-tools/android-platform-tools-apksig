@@ -1,0 +1,18 @@
+#!/usr/bin/make -f
+
+include /usr/share/dpkg/pkg-info.mk
+export JAVA_HOME=/usr/lib/jvm/default-java
+
+%:
+	dh $@ --with maven_repo_helper --buildsystem=gradle
+
+tarball_name = fdc6e986a7ae7765a69bc42bfb84471ec5b60bfa
+
+override_dh_auto_build:
+	dh_auto_build -- -x test assemble
+
+get-orig-source: $(tarball_name).tar.gz
+	mk-origtargz --repack --compression xz $<
+
+$(tarball_name).tar.gz:
+	wget https://android.googlesource.com/platform/tools/apksig/+archive/$(tarball_name).tar.gz
