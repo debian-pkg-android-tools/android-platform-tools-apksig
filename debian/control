@@ -21,8 +21,7 @@ Homepage: https://android.googlesource.com/platform/tools/apksig
 
 Package: libapksig-java
 Architecture: all
-Depends: ${misc:Depends},
-         default-jre-headless (>= 1:1.6) | java6-runtime-headless
+Depends: ${misc:Depends}
 Description: library to sign and verify Android APKs
  apksig is a project which aims to simplify APK signing and checking
  whether APK's signatures should verify on Android. apksig supports
