@@ -1,10 +1,12 @@
 #!/usr/bin/make -f
 
 include /usr/share/dpkg/pkg-info.mk
+include /usr/share/javahelper/java-vars.mk
+
 export JAVA_HOME=/usr/lib/jvm/default-java
 
 %:
-	dh $@ --with maven_repo_helper --buildsystem=gradle
+	dh $@ --with maven_repo_helper,javahelper --buildsystem=gradle
 
 tarball_name = fdc6e986a7ae7765a69bc42bfb84471ec5b60bfa
 
@@ -17,6 +19,13 @@ override_dh_auto_clean:
 
 debian/apksigner.1:
 	pandoc -s -o $@ debian/apksigner.1.md
+
+override_jh_build:
+	jh_build --javacopts="-source 7" --no-javadoc \
+		--main=com.android.apksigner.ApkSignerTool src/apksigner/java
+
+override_jh_exec:
+	jh_exec --indep --package=apksigner
 
 get-orig-source: $(tarball_name).tar.gz
 	mk-origtargz --repack --compression xz $<

@@ -7,3 +7,5 @@ files
 libapksig-java.debhelper.log
 libapksig-java.substvars
 libapksig-java/
+_jh_build.java/
+_jh_manifest.java

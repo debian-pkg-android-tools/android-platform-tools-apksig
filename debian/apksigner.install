@@ -1,0 +1,4 @@
+apksigner.jar  /usr/share/apksigner/
+src/apksigner/java/com/android/apksigner/help.txt /usr/share/doc/apksigner/
+src/apksigner/java/com/android/apksigner/help_sign.txt /usr/share/doc/apksigner/
+src/apksigner/java/com/android/apksigner/help_verify.txt /usr/share/doc/apksigner/
