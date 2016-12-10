@@ -8,8 +8,15 @@ export JAVA_HOME=/usr/lib/jvm/default-java
 
 tarball_name = fdc6e986a7ae7765a69bc42bfb84471ec5b60bfa
 
-override_dh_auto_build:
+override_dh_auto_build: debian/apksigner.1
 	dh_auto_build -- -x test assemble
+
+override_dh_auto_clean:
+	dh_auto_clean
+	$(RM) debian/*.1 *.jar
+
+debian/apksigner.1:
+	pandoc -s -o $@ debian/apksigner.1.md
 
 get-orig-source: $(tarball_name).tar.gz
 	mk-origtargz --repack --compression xz $<
