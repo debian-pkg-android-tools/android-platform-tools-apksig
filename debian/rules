@@ -34,7 +34,9 @@ override_jh_exec:
 	jh_exec --indep --package=apksigner
 
 get-orig-source: $(tarball_name).tar.gz
-	mk-origtargz --repack --compression xz $<
 
 $(tarball_name).tar.gz:
 	wget https://android.googlesource.com/platform/tools/apksig/+archive/$(tarball_name).tar.gz
+
+.PHONY: get-orig-source
+
