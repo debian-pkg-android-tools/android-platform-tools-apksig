@@ -38,10 +38,12 @@ being signed.
 # COMMANDS
 
 sign
-:This signs the provided APK using one or more signers, each represented by
-an asymmetric key pair and a corresponding certificate. Typically, an APK is
-signed by just one signer. For each signer, you need to provide the signer's
-private key and certificate.
+
+:This signs the provided APK, stripping out any pre-existing signatures. Signing
+is performed using one or more signers, each represented by an asymmetric key
+pair and a corresponding certificate. Typically, an APK is signed by just one
+signer. For each signer, you need to provide the signer's private key and
+certificate.
 
 verify
 :This checks whether the provided APK will verify on Android. By default, this
