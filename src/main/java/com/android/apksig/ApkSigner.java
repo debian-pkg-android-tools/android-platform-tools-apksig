@@ -16,6 +16,22 @@
 
 package com.android.apksig;
 
+import com.android.apksig.apk.ApkFormatException;
+import com.android.apksig.apk.ApkUtils;
+import com.android.apksig.apk.MinSdkVersionException;
+import com.android.apksig.internal.apk.v2.V2SchemeVerifier;
+import com.android.apksig.internal.util.ByteBufferDataSource;
+import com.android.apksig.internal.util.Pair;
+import com.android.apksig.internal.zip.CentralDirectoryRecord;
+import com.android.apksig.internal.zip.EocdRecord;
+import com.android.apksig.internal.zip.LocalFileRecord;
+import com.android.apksig.internal.zip.ZipUtils;
+import com.android.apksig.util.DataSink;
+import com.android.apksig.util.DataSinks;
+import com.android.apksig.util.DataSource;
+import com.android.apksig.util.DataSources;
+import com.android.apksig.util.ReadableDataSink;
+import com.android.apksig.zip.ZipFormatException;
 import java.io.Closeable;
 import java.io.File;
 import java.io.IOException;
@@ -34,23 +50,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import com.android.apksig.apk.ApkFormatException;
-import com.android.apksig.apk.ApkUtils;
-import com.android.apksig.apk.MinSdkVersionException;
-import com.android.apksig.internal.apk.v2.V2SchemeVerifier;
-import com.android.apksig.internal.util.ByteBufferDataSource;
-import com.android.apksig.internal.util.Pair;
-import com.android.apksig.internal.zip.CentralDirectoryRecord;
-import com.android.apksig.internal.zip.EocdRecord;
-import com.android.apksig.internal.zip.LocalFileRecord;
-import com.android.apksig.internal.zip.ZipUtils;
-import com.android.apksig.util.DataSink;
-import com.android.apksig.util.DataSinks;
-import com.android.apksig.util.DataSource;
-import com.android.apksig.util.DataSources;
-import com.android.apksig.util.ReadableDataSink;
-import com.android.apksig.zip.ZipFormatException;
 
 /**
  * APK signer.
@@ -251,13 +250,15 @@ public class ApkSigner {
                                 signerConfig.getCertificates())
                                 .build());
             }
-            signerEngine =
+            DefaultApkSignerEngine.Builder signerEngineBuilder =
                     new DefaultApkSignerEngine.Builder(engineSignerConfigs, minSdkVersion)
-                    .setV1SigningEnabled(mV1SigningEnabled)
-                    .setV2SigningEnabled(mV2SigningEnabled)
-                    .setOtherSignersSignaturesPreserved(mOtherSignersSignaturesPreserved)
-                    .setCreatedBy(mCreatedBy)
-                    .build();
+                            .setV1SigningEnabled(mV1SigningEnabled)
+                            .setV2SigningEnabled(mV2SigningEnabled)
+                            .setOtherSignersSignaturesPreserved(mOtherSignersSignaturesPreserved);
+            if (mCreatedBy != null) {
+                signerEngineBuilder.setCreatedBy(mCreatedBy);
+            }
+            signerEngine = signerEngineBuilder.build();
         }
 
         // Step 4. Provide the signer engine with the input APK's APK Signing Block (if any)
@@ -820,7 +821,7 @@ public class ApkSigner {
         private boolean mV1SigningEnabled = true;
         private boolean mV2SigningEnabled = true;
         private boolean mOtherSignersSignaturesPreserved;
-        private String mCreatedBy = "1.0 (Android apksig)";
+        private String mCreatedBy;
         private Integer mMinSdkVersion;
 
         private final ApkSignerEngine mSignerEngine;
