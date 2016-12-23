@@ -1,3 +1,9 @@
+android-platform-tools-apksig (0.4+git162~g85a854b-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Hans-Christoph Steiner <hans@eds.org>  Fri, 23 Dec 2016 09:01:19 +0000
+
 android-platform-tools-apksig (0.3+git154~gfdc6e98-1) unstable; urgency=medium
 
   * Initial release. (Closes: #847657)
