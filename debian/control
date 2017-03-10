@@ -4,6 +4,7 @@ Priority: optional
 Maintainer: Android Tools Maintainers <android-tools-devel@lists.alioth.debian.org>
 Uploaders: Hans-Christoph Steiner <hans@eds.org>
 Build-Depends: antlr3,
+               bash-completion,
                debhelper (>= 10),
                default-jdk-headless | default-jdk (>= 1:1.6),
                gradle-debian-helper,
