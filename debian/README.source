@@ -1,4 +1,11 @@
 
+This package is normally built as part of the whole Android SDK and
+ends up being included in the "build-tools" package.  So the release
+tags will match all of the various android-platform-* packages.  To
+make this extra confusing, they also publish a standalone JAR library
+of this project with a separate versioning scheme, matching the Gradle
+Android Plugin versions.
+
 The source for this can some from two places:
 
 * https://android.googlesource.com/platform/tools/apksig.git
@@ -15,4 +22,4 @@ released source jar matches which git revision:
 The source JAR does not include the gradle build files, but this
 package only uses the .java files anyway.
 
- -- Hans-Christoph Steiner <hans@eds.org>, Tue,  4 Apr 2017 21:43:10 +0200
+ -- Hans-Christoph Steiner <hans@eds.org>, Tue,  4 Apr 2017 22:36:21 +0200
