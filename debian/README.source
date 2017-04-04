@@ -1,0 +1,18 @@
+
+The source for this can some from two places:
+
+* https://android.googlesource.com/platform/tools/apksig.git
+* https://jcenter.bintray.com/com/android/tools/build/apksig/2.5.0-alpha-preview-01/apksig-2.5.0-alpha-preview-01-sources.jar
+
+This package started from the git repo, but Google never tags releases
+there with rational tags.  The release versions never show up in the
+git tags.  But using `diff` or `meld`, it is easy to see which
+released source jar matches which git revision:
+
+    unzip apksig-2.5.0-alpha-preview-01-sources.jar
+    meld /path/to/android-platform-tools-apksig/src/main/java/com/  com/
+
+The source JAR does not include the gradle build files, but this
+package only uses the .java files anyway.
+
+ -- Hans-Christoph Steiner <hans@eds.org>, Tue,  4 Apr 2017 21:43:10 +0200
