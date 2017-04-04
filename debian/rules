@@ -9,7 +9,7 @@ export CLASSPATH=/usr/share/java/apksig.jar
 %:
 	dh $@ --with maven_repo_helper,javahelper,bash-completion --buildsystem=gradle
 
-tarball_name = 42d07eb
+tarball_name = 10c9d71d48ff2db01a2d1f157651036494f569f7
 
 override_dh_auto_build: debian/apksigner.1
 	dh_auto_build
