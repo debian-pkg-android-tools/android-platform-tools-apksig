@@ -6,7 +6,7 @@ Uploaders: Hans-Christoph Steiner <hans@eds.org>
 Build-Depends: antlr3,
                bash-completion,
                debhelper (>= 10),
-               default-jdk-headless | default-jdk (>= 1:1.6),
+               default-jdk-headless (>= 2:1.8) | default-jdk (>= 2:1.8) | openjdk-8-jdk,
                gradle-debian-helper,
                groovy,
                javahelper,
