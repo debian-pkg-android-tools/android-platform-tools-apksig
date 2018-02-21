@@ -133,6 +133,10 @@ file in X.509 format (see --key and --cert).
 
   By default, if the key is password-protected, the tool will prompt for password via console or standard input. When the same file (including standard input) is used for providing multiple passwords, the passwords are read from the file one line at a time. Passwords are read in the order in which signers are specified and, within each signer, KeyStore password is read before the key password is read.
 
+--pass-encoding
+
+Additional character encoding (e.g., ibm437 or utf-8) to try for passwords containing non-ASCII characters.  KeyStores created by keytool are often encrypted not using the Unicode form of the password but rather using the form produced by encoding the password using the console's character encoding. apksigner by default tries to decrypt using several forms of the password: the Unicode form, the form encoded using the JVM default charset, and, on Java 8 and older, the form encoded using the console's charset.  On Java 9, apksigner cannot detect the console's charset and may need to be provided with --pass-encoding when a non-ASCII password is used. --pass-encoding may also need to be provided for a KeyStore created by keytool on a different OS or in a different locale.
+
 --ks-type
 :Type/algorithm of KeyStore to use. By default, the default type is used.
 
