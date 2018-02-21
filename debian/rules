@@ -33,6 +33,17 @@ override_jh_build:
 override_jh_exec:
 	jh_exec --indep --package=apksigner
 
+override_dh_auto_test:
+	dh_auto_test
+ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
+	java -jar apksigner.jar verify src/test/resources/com/android/apksig/original.apk
+	for f in src/test/resources/com/android/apksig/*does-not-verify.apk; do \
+		set -e; \
+		echo should not verify: $$f; \
+		! java -jar apksigner.jar verify $$f; \
+	done
+endif
+
 get-orig-source: $(tarball_name).tar.gz
 
 $(tarball_name).tar.gz:
