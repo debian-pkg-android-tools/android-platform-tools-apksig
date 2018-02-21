@@ -1,8 +1,6 @@
-Index: android-platform-tools-apksig/build.gradle
-===================================================================
---- android-platform-tools-apksig.orig/build.gradle
-+++ android-platform-tools-apksig/build.gradle
-@@ -4,10 +4,9 @@ apply plugin: 'java'
+--- a/build.gradle
++++ b/build.gradle
+@@ -4,10 +4,9 @@
  
  sourceCompatibility = '1.8'
  
@@ -15,4 +13,4 @@ Index: android-platform-tools-apksig/build.gradle
  }
 +
 +archivesBaseName = 'apksig'
-+version = '0.3'
++version = '0.8'
