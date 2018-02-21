@@ -1,3 +1,9 @@
+android-platform-tools-apksig (0.8-1) unstable; urgency=medium
+
+  * New upstream release from tag android-8.1.0_r14
+
+ -- Hans-Christoph Steiner <hans@eds.org>  Wed, 21 Feb 2018 21:28:29 +0100
+
 android-platform-tools-apksig (0.5+git168~g10c9d71-1) unstable; urgency=medium
 
   * New upstream release (Closes: #859541)
